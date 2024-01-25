@@ -1,0 +1,9 @@
+$display-list: block, inline-block, inline, flex, inline-flex, grid, inline-grid, hidden;
+
+@mixin make-display($suffix) {
+  @each $display in $display-list {
+    .#{$display}#{$suffix} {
+      display: if($display == hidden, none, $display) !important;
+    }
+  }
+}

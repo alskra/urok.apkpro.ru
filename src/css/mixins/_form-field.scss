@@ -1,0 +1,22 @@
+@use "helpers" as *;
+
+@mixin form-field {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: top;
+  cursor: text;
+  transition: var(--duration);
+  transition-property: border-color, box-shadow, color, background-color, opacity;
+
+  &:--disabled {
+    cursor: default;
+  }
+
+  // stylelint-disable-next-line
+  &:is(textarea) {
+    resize: vertical;
+  }
+}

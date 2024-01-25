@@ -1,0 +1,11 @@
+mixin btn({tag = 'button', type = 'button', content, iconPrev, iconNext} = {})
+  #{tag}.btn(
+    type=tag === 'button' ? type : null
+    href=tag === 'a' ? '' : null
+  )&attributes(attributes)
+    if iconPrev
+      icon-svg.btn__icon(name=iconPrev)
+    if content
+      span.btn__content= content
+    if iconNext
+      icon-svg.btn__icon(name=iconNext)

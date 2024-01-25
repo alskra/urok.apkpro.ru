@@ -1,0 +1,24 @@
+@forward "sass:math";
+@forward "sass:list";
+@forward "variables";
+@forward "functions";
+@forward "mixins";
+@use "variables" as *;
+
+// Custom selectors
+@custom-selector :--disabled :is(:disabled, [disabled], .is-disabled);
+@custom-selector :--invalid .is-invalid;
+
+// Custom media queries
+// Styles for hover-devices and IE11
+@custom-media --hover (hover: hover), screen and (-ms-high-contrast: active), (-ms-high-contrast: none);
+
+@each $name, $value in $grid-breakpoints {
+  // stylelint-disable-next-line
+  @custom-media --min-#{$name} (min-width: #{$value});
+}
+
+@each $name, $value in $grid-breakpoints {
+  // stylelint-disable-next-line
+  @custom-media --max-#{$name} (max-width: #{$value - 0.02});
+}

@@ -1,0 +1,51 @@
+mixin slider()
+  -
+    const slides = [
+      {
+        title: `Новый проект &laquo;Время возможностей&raquo; объединит молодёжь Новгородской области`,
+        image: '../../images/content/slider/slide-1.jpg',
+        date: '26.08.2020',
+        type: 'Региональное',
+        place: 'Тёсово-Нетыльский',
+      },
+      {
+        title: `Молодёжно&nbsp;&mdash; это информационно-познавательный портал для молодёжи Новгородской области`,
+        image: '../../images/content/slider/slide-2.jpg',
+        date: '04.12.2021',
+        type: 'Региональное',
+        place: 'Тёсово-Нетыльский',
+      },
+    ];
+
+  .slider(x-data="slider")&attributes(
+    attributes)
+    .swiper(
+      x-ref="swiper"
+      data-swiper-autoplay="3000"
+    )
+      .swiper-wrapper
+        each slide in slides
+          .swiper-slide.slider__item
+            .slider__image
+              +img-2x().slider__image-el(src=slide.image)
+
+            .slider__body
+              +container().slider__container
+                .slider__body-inner
+                  .slider__header
+                    .slider__date
+                      - const date = slide.date.split('.');
+
+                      .slider__day-month #{date[0]}.#{date[1]}
+                      | #{date[2]}
+                    .slider__header-group
+                      .slider__type= slide.type
+                      .slider__place
+                        span= slide.place
+
+                  h2.slider__title!= slide.title
+
+      .slider__nav
+        +container().slider__container-nav
+          +button-arrow({ dir: 'left' }).slider__button(x-ref="buttonPrev")
+          +button-arrow().slider__button(x-ref="buttonNext")

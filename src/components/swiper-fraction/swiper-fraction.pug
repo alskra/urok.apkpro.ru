@@ -1,0 +1,9 @@
+mixin swiper-fraction()
+  .swiper-fraction(x-data="swiperFraction")&attributes(
+    attributes)
+    block
+    .swiper-fraction__footer
+      .swiper-fraction__pagination(x-ref="pagination")
+      .swiper-fraction__navigation(x-ref="navigation")
+        +button-arrow({ dir: 'left' })(x-ref="prevEl")
+        +button-arrow()(x-ref="nextEl")

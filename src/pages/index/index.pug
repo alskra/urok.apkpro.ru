@@ -1,0 +1,527 @@
+extends /pug/base
+
+include /components/header/header
+include /components/footer/footer
+include /components/nav/nav
+include /components/section/section
+include /components/possibilities/possibilities
+include /components/infographics/infographics
+include /components/cards-slider/cards-slider
+include /components/collapsible/collapsible
+include /components/words/words
+
+append variables
+  -
+    appAttrs = {
+      'x-data': 'app',
+      'x-bind': 'app',
+    };
+
+append head-end
+  style.
+    [hidden],
+    [x-cloak] {
+      display: none !important;
+    }
+
+block app
+  +header
+  +nav
+
+  main.app__main(x-ref="sections")
+    +section({start: true})(
+      data-nav={
+        active: false,
+        url: '',
+        title: 'Библиотека цифрового образовательного контента',
+      }
+    )
+      .section__main.container.grid-12
+        .section__col-start-1.col-span-4.col-line-2.col-span-5-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-3
+        .section__col-start-1.col-span-4.col-line-2.col-span-5-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-8-max-md
+          +content
+            h1.h2(style="font-size: 28rem;") Библиотека цифрового образова&shy;тельного контента &#8212;
+
+          +btn({
+            tag: 'a',
+            iconPrev: 'account',
+            iconNext: 'blank',
+            content: 'Вход в библиотеку',
+          }).btn-primary.section__btn-start.col-span-7.col-span-12-max-sm(
+            href="https://lesson.edu.ru/my-school/catalog?backUrl=https://myschool.edu.ru/&token=00d3c187bded0129a346af21affaa6a9e375b1c38cf3d61632acf9035c32a694"
+            target="_blank"
+            style="margin-top: 30px"
+          )
+        .section__col-start-2.col-span-6.col-span-7-max-lg.col-span-12-max-md
+          +content
+            p.
+              масштабная база знаний, созданная по&nbsp;всем предметам и&nbsp;темам школьной программы
+              в&nbsp;соответствии с&nbsp;Федеральными государственными образовательными стандартами, примерными
+              основными образовательными программами и&nbsp;универсальным тематическим классификатором
+              с&nbsp;использованием самых современных способов визуализации материала.
+
+      footer.section__footer.container.grid-12
+        .section__pointer.col-span-5.col-span-12-max-sm
+          icon-svg.section__pointer-icon(name="arrow-down")
+          span.section__pointer-content Особенности библиотеки
+
+
+    +section({title: 'Особенности библиотеки'}).section--features(
+      id="features"
+      data-nav={
+        active: true,
+        url: '#features',
+        title: 'Особенности библиотеки',
+      }
+    )
+      .section__main.container.grid-12
+        .col-span-8.col-line-3.col-span-10-max-lg.col-line-2-max-lg.col-span-12-max-md.col-line-1-max-md
+          +content()
+            .mb-p
+              h3.h1.uppercase.mb-0 Общедоступ&shy;ная
+              p.
+                с&nbsp;1&nbsp;января 2023 года доступна к&nbsp;использованию во&nbsp;всех регионах страны.
+
+            .mb-p
+              h3.h1.uppercase.mb-0 Бесплатная
+              p.
+                материалы библиотеки являются бесплатными для всех категорий пользователей.
+
+            .mb-0
+              h3.h1.uppercase.mb-0 По&nbsp;всем темам школьной программы
+              p.
+                цифровой образовательный контент предполагает использование независимо от&nbsp;изучаемой
+                &laquo;линейки&raquo; учебников.
+
+    +section({ title: 'Возможности библиотеки' }).section--possibilities(
+      id="possibilities"
+      data-nav={
+        active: true,
+        url: '#possibilities',
+        title: 'Возможности библиотеки',
+        style: 'light',
+      }
+    )
+      +possibilities
+
+    +section({title: 'О&nbsp;контенте'})(
+      id="about-content"
+      data-nav={
+        active: true,
+        url: '#about-content',
+        title: 'О контенте',
+      }
+    )
+      .section__main.container
+        .grid-12.mb-17
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md
+            +content
+              .h2 Из&nbsp;чего состоит цифровой образовательный контент?
+
+        .grid-12
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-p-max-md
+            +content
+              p.
+                Основная единица содержания цифрового образовательного контента (урок) определяет логическую
+                последовательность освоения учебного материала и&nbsp;имеет блочно-модульную структуру:
+
+              ul.without-sep
+                li вхождение в&nbsp;тему урока
+                li освоение нового материала
+                li применения изучаемого материала
+                li проверка приобретенных знаний
+                li подведение итогов, домашнее задание
+
+          .col-span-5.col-span-6-max-lg.col-span-12-max-md
+            .block-style-1
+              +content
+                p.
+                  В&nbsp;Библиотеке содержится более 50&nbsp;типов электронных образовательных материалов: виртуальные
+                  лаборатории, интерактивные тренажеры, карты, видеоролики, инфографики, подкасты, кроссворды и&nbsp;другие
+                  виды образовательных материалов.
+
+                p.
+                  Ресурсы Библиотеки помогают оптимизировать множество рутинных процессов: подготовку к&nbsp;урокам,
+                  поиск материалов, составление и&nbsp;проверка домашнего задания, а&nbsp;также делают уроки более
+                  динамичными и&nbsp;интересными.
+
+          +content.col-span-11.col-line-2-min-lg.col-span-12-max-lg
+            hr
+
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-15-max-md
+            .block-style-2
+              .block-icon.block-style-4
+                icon-svg(name="autor")
+
+              .block-content
+                +content
+                  .block-style-4.block-style-4--header.pb-8
+                    h3 Кто автор уроков
+
+                    p.
+                      Цифровые уроки, представленные в&nbsp;Библиотеке, разработаны командой российских учителей
+                      под руководством:
+
+                  article.mb-p
+                    h4.text-style-3 Дудова Людмила Васильевна (Русский язык)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/dudova.png")
+
+                      figcaption.
+                        Первый заместитель председателя комиссии Общественной палаты&nbsp;РФ по&nbsp;развитию
+                        образования и&nbsp;науки
+
+                    p.
+                      Кандидат филологических	наук, доцент,	первый заместитель руководителя Комиссии по&nbsp;развитию
+                      образования и&nbsp;науки Общественной палаты Российской Федерации, председатель Координационного
+                      совета Общероссийской общественной	организации &laquo;Ассоциация учителей литературы
+                      и&nbsp;русского	языка&raquo; (АССУЛ), член коллегии	Министерства просвещения Российской Федерации,
+                      член Президиума Общества русской словесности, член Координационного	совета Российского	общества
+                      &laquo;Знание&raquo;, член Совета по&nbsp;русскому языку при Президенте Российской Федерации
+                      и&nbsp;Общественных советов	при Министерстве науки и&nbsp;образования и&nbsp;Рособрнадзоре
+
+
+                  article.mb-p
+                    h4.text-style-3 Конобеев Алексей Васильевич (Английский язык)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/konobeev.png")
+
+                      figcaption.
+                        Первый заместитель председателя комиссии Общественной палаты&nbsp;РФ по&nbsp;развитию
+                        образования и&nbsp;науки
+
+                    p.
+                      Кандидат педагогических наук, член жюри регионального этапа Всероссийской олимпиады школьников
+                      (г. Москва), академический директор Skyeng
+
+                  article.mb-p
+                    h4.text-style-3 Журавлева Ольга Николаевна (История России, Всеобщая история)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/zhuravleva.png")
+
+                      figcaption.
+                        Профессор, заведующая кафедрой социального образования Санкт-Петербургской академии
+                        постдипломного педагогического образования
+
+                    p.
+                      Доктор педагогических наук, доцент. Председатель Санкт-Петербургского регионального отделения
+                      Всероссийской ассоциации учителей истории и обществознания; почетный работник общего
+                      образования&nbsp;РФ. Автор федеральных учебников по&nbsp;истории России, методических пособий.
+
+                  article.mb-p
+                    h4.text-style-3 Ященко Иван Валерьевич (Математика, Алгебра, Геометрия)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/yashchenko.png")
+
+                      figcaption.
+                        Директор Московского центра непрерывного математического образования
+
+                    p.
+                      Научный руководитель Центра педагогического мастерства, учредитель Фонда &laquo;Талант
+                      и&nbsp;успех&raquo;, член Попечительского совета Фонда &laquo;Талант и&nbsp;успех&raquo;.
+                      Один из&nbsp;авторов идеи и&nbsp;бессменный председатель оргкомитета &laquo;Математического
+                      праздника&raquo;. Заместитель председателя оргкомитета Московской математической олимпиады.
+                      Руководитель федеральной группы разработчиков ЕГЭ по&nbsp;математике. Лауреат Премии Правительства
+                      Российской Федерации в&nbsp;области образования.
+
+                  article.mb-p
+                    h4.text-style-3 Босова Людмила Леонидовна (Информатика)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/bosova.png")
+
+                      figcaption.
+                        Зав. кафедрой теории и&nbsp;методики обучения математике и информатике Института математики и информатики МПГУ
+
+                    p.
+                      Доктор педагогических наук, заслуженный учитель РФ, автор УМК по&nbsp;информатике для основной и&nbsp;старшей школы.
+
+                  article.mb-p
+                    h4.text-style-3 Белышев Андрей Юрьевич (Физика)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/9.png")
+
+                      figcaption.
+                        Начальник отдела ФГАОУ ДПО «Академия Минпросвещения России»
+
+                  article.mb-p
+                    h4.text-style-3 Оржековский Павел Александрович (Химия)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/orzhekovskij.png")
+
+                      figcaption.
+                        Профессор кафедры естественнонаучного образования и&nbsp;коммуникативных технологий
+
+                    p.
+                      Доктор педагогических наук. Награжден почетным знаком &laquo;Отличник народного просвещения&raquo;
+                      (1989 г), Почетной грамотой Министерства просвещения СССР (1980&nbsp;г), Лауреат конкурса
+                      &laquo;Грант Москвы&raquo; в&nbsp;области наук и&nbsp;технологий в&nbsp;сфере образования
+                      (2003, 2004, 2005&nbsp;годов), медалями: ВДНХ СССР &laquo;За&nbsp;достигнутые успехи
+                      в&nbsp;развитии народного хозяйства СССР&raquo; (1983, 1987&nbsp;гг)
+
+                  article
+                    h4.text-style-3 Пынеев Александр Владимирович (Биология)
+
+                    figure.my-8
+                      +picture-webp().block-style-3(src="/media/authors/pyneev.png")
+
+                    p.
+                      Учитель биологии Государственное бюджетное общеобразовательное учреждение города Москвы
+                      &laquo;Романовская школа&raquo;
+
+          .section__col-border-left.col-span-5.col-span-6-max-lg.col-span-12-max-md
+            .block-style-2.block-style-4
+              .block-icon
+
+              .block-content
+                +content
+                  h3 Можно&nbsp;ли доверять размещенным материалам?
+
+                  p.
+                    Все материалы Библиотеки прошли экспертизу содержания и&nbsp;соответствия требованиям информационной
+                    безопасности в&nbsp;ведущих экспертных организациях, таких как: ФГБНУ &laquo;ФИПИ&raquo;,
+                    ФГБНУ &laquo;Институт стратегии развития образования РАО&raquo;,
+                    ФГБОУ ВО &laquo;Российский государственный педагогический университет имени А.И. Герцена&raquo;
+                    и&nbsp;АО&nbsp;&laquo;Лаборатория Касперского&raquo;.
+
+    +section({ title: 'Библиотека в цифрах' }).section--infographics(
+      id="infographics"
+      data-nav={
+        active: true,
+        url: '#infographics',
+        title: 'Библиотека в цифрах',
+        style: 'transparent',
+      }
+    )
+
+      +infographics
+
+    +section({title: 'Как пользоваться библиотекой'})(
+      id="how-use"
+      data-nav={
+        active: true,
+        url: '#how-use',
+        title: 'Как пользоваться библиотекой',
+      }
+    )
+      .section__main.container
+        .grid-12.mb-17
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md
+            +content
+              .h2 Как пользоваться библиотекой
+
+        .grid-12.mb-24
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-p-max-md
+            .block-number
+              +content
+                p: strong.
+                  Пройдите программу повышения квалификации для учителей по&nbsp;использованию цифрового образовательного
+                  контента в&nbsp;учебной деятельности:
+
+                ul
+                  li.
+                    продолжительность обучения &mdash; 32 часа
+                  li.
+                    формат: очно-заочное обучение с&nbsp;применением дистанционных образовательных
+                    технологий&nbsp;&mdash; в&nbsp;любое удобное для учителя время
+                  li.
+                    практикоориентированное обучение: &laquo;обучая, учимся&raquo;
+
+                p: strong Какие вопросы рассматриваются:
+
+                ul
+                  li Единое содержание общего образования
+                  li Обновленные ФГОС
+                  li Универсальный тематический классификатор
+                  li Мотивация к&nbsp;активной учебной деятельности
+                  li Инструкция по&nbsp;подготовке уроков
+                  li Методика преподавания с&nbsp;использованием контента
+                  li Геймификация образовательного процесса
+
+          .section__col-btn.col-span-5.col-span-6-max-lg.col-span-12-max-md
+            +content
+              p: strong.
+                Кто спикеры:
+
+              p.
+                #[span.underline Горобец Андрей Валерьевич]&nbsp;&mdash; директор Департамента цифровой трансформации и&nbsp;больших
+                данных Министерства просвещения&nbsp;РФ;
+
+              p.
+                #[span.underline Упорова Марина Викторовна]&nbsp;&mdash; заместитель директора Департамента государственной политики
+                и&nbsp;управления в&nbsp;сфере общего образования;
+
+              p.
+                #[span.underline Логвинова Ирина Михайловна]&nbsp;&mdash; к.п.н., доцент, начальник управления
+                по&nbsp;научно-образовательной деятельности ИСРО РАО.
+
+            +btn({
+              tag: 'a',
+              iconNext: 'blank',
+              content: 'Записаться',
+            }).btn-primary.section__btn-sign(
+              href="https://education.apkpro.ru/courses/899/"
+              target="_blank"
+            )
+
+        .grid-12.mb-16
+          .col-span-10.col-line-2.col-span-12-max-lg.col-line-1-max-lg
+            .block-number.block-number--2
+              +content
+                p
+                  strong Посмотрите цикл семинаров #[a(href="https://rutube.ru/plst/216366/" target="_blank") &laquo;Педагогическая лаборатория: как это сделано&raquo;]#[br]
+                  | Рассказываем, как создавались материалы Библиотеки и&nbsp;показываем, как их&nbsp;применить на&nbsp;практике.
+
+        .grid-12.mb-34
+          .col-span-11.col-line-2.col-span-12-max-lg.col-line-1-max-lg
+            +cards-slider
+
+        .grid-12
+          .col-span-5.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-24-max-md
+            .block-number.block-number--3
+              +content
+                p: strong.
+                  Ознакомьтесь с&nbsp;#[a(href="https://apkpro.ru/upload/docs/tsos/%D0%9F%D0%BE%D1%81%D0%BE%D0%B1%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D1%8F%20%D0%BF%D0%BE%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D1%85%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%BE%D0%B2.pdf" target="_blank") Пособием для учителя по&nbsp;использованию электронных образовательных материалов]
+
+          .col-span-5.col-span-6-max-lg.col-span-12-max-md
+            .block-number.block-number--4
+              +content
+                p: strong.
+                  Откройте для себя преимущества использования Библиотеки
+
+                ul.without-sep
+                  li: a(href="https://apkpro.ru/upload/docs/tsos/%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82_%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9.pdf" target="_blank") для учителей
+                  li: a(href="https://apkpro.ru/upload/docs/tsos/%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82_%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2.pdf" target="_blank") для школьников
+                  li: a(href="https://apkpro.ru/upload/docs/tsos/%D0%9A%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82_%D0%98%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9.pdf" target="_blank") для родителей
+
+    +section({title: 'Вопросы и&nbsp;ответы'})(
+      id="faq"
+      data-nav={
+        active: true,
+        url: '#faq',
+        title: 'Вопросы и ответы',
+      }
+    )
+      .section__main.container
+        .grid-12.mb-p
+          .col-span-4.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md
+            +content
+              p.text-style-1.mb-4.
+                Чтобы вам было легко ориентироваться, создан раздел &laquo;Вопросы и&nbsp;ответы&raquo;
+              .h2.mt-0 Вопросы и&nbsp;ответы
+
+        .section__faq.grid-12
+          .section__faq-col-1.col-span-4.col-line-2.col-span-6-max-lg.col-line-1-max-lg.col-span-12-max-md.mb-20.mb-15-max-lg
+            +content
+              p.
+                В&nbsp;разделе вы&nbsp;можете найти ответы на&nbsp;часто задаваемые вопросы, просмотрите короткие
+                видео-ролики о&nbsp;Библиотеке и&nbsp;способах использования цифрового образовательного контента
+                на&nbsp;уроке.
+
+          .section__faq-col-2.col-span-7.col-span-12-max-lg.mb-0-max-lg.mb-15-max-md
+            +collapsible('Как получить доступ к&nbsp;каталогу уроков Библиотеки Академии Минпросвещения?')
+              +content
+                p.
+                  Шаг&nbsp;1. Наберите в&nbsp;браузере адрес сайта &laquo;Моя школа&raquo;:
+                  #[a(href="https://myschool.edu.ru/" target="_blank") https://myschool.edu.ru/]
+
+                figure: +picture-webp()(src="/media/faq/1_1.jpg")
+
+                p.
+                  Шаг&nbsp;2. Найдите на&nbsp;странице раздел &laquo;Материалы библиотеки&raquo;
+
+                figure: +picture-webp()(src="/media/faq/1_2.jpg")
+
+                p.
+                  Шаг&nbsp;3. Перейдите по&nbsp;ссылке &laquo;Каталог цифрового образовательного контента&raquo;
+
+                figure: +picture-webp()(src="/media/faq/1_3.jpg")
+
+                p.
+                  Шаг&nbsp;4. Укажите свой субъект проживания
+
+                figure: +picture-webp()(src="/media/faq/1_4.jpg")
+
+                p.
+                  Шаг&nbsp;5. Откроется каталог Библиотеки по&nbsp;предметам.
+
+                figure: +picture-webp()(src="/media/faq/1_5.jpg")
+
+            +collapsible('Как найти актуальные уроки?')
+              +content
+                p.
+                  Шаг&nbsp;1. Перейдите по&nbsp;ссылке &laquo;Актуальная тематическая подборка цифрового
+                  образовательного контента&raquo;.
+
+                figure: +picture-webp()(src="/media/faq/2_1.jpg")
+                figure: +picture-webp()(src="/media/faq/2_2.jpg")
+
+                p.
+                  Шаг&nbsp;2. Укажите свой субъект проживания
+
+                figure: +picture-webp()(src="/media/faq/2_3.jpg")
+
+                p.
+                  Шаг&nbsp;3. Откроется страница с&nbsp;подборкой тем уроков на&nbsp;текущую неделю
+                  в&nbsp;соответствии с&nbsp;календарно-тематическим планированием.
+
+                figure: +picture-webp()(src="/media/faq/2_4.jpg")
+
+                p.
+                  Шаг&nbsp;4. Выберите нужный класс в блоке предмета для просмотра тем уроков по уровням образования.
+
+                figure: +picture-webp()(src="/media/faq/2_4.jpg")
+
+            +collapsible('Как открыть урок в&nbsp;каталоге Библиотеки Академии Минпросвещения?')
+              +content
+                p.
+                  Шаг&nbsp;1. Найдите нужный урок в Каталоге.
+
+                p.
+                  Шаг&nbsp;2. В&nbsp;карточке нажмите на&nbsp;кнопку &laquo;Посмотреть&raquo;.
+
+                figure: +picture-webp()(src="/media/faq/3_1.jpg")
+
+                p.
+                  Шаг&nbsp;3. Запустите электронный образовательный материал (кнопка &laquo;Запустить&raquo;).
+
+                figure: +picture-webp()(src="/media/faq/3_2.jpg")
+
+            +collapsible('Познакомились с&nbsp;материалами Библиотеки и&nbsp;у&nbsp;нас есть предложения. Куда обратиться?')
+              +content
+                p.
+                  Шаг&nbsp;1. Выберите урок.
+
+                p.
+                  Шаг&nbsp;2. Откройте элемент урока (электронный образовательный материал),
+                  к&nbsp;которому у&nbsp;вас есть предложения.
+
+                figure: +picture-webp()(src="/media/faq/4_1.jpg")
+
+                p.
+                  Шаг&nbsp;3. Нажмите кнопку &laquo;Замечания и&nbsp;предложения&raquo;. Заполните предлагаемую форму.
+
+                figure: +picture-webp()(src="/media/faq/4_2.jpg")
+
+          .section__faq-col-3.col-span-4.col-line-2.col-span-6-max-lg.col-line-7-max-lg.col-span-12-max-md.col-line-1-max-md.mb-15-max-lg.mb-0-max-md
+            +content
+              p.text-style-2.
+                #[small Эл. почта:] #[a(href="mailto:urok@apkpro.ru") urok@apkpro.ru]#[br]
+                #[small Горячая линия:] #[a(href="tel:88002009185") 8 (800) 200-91-85]
+
+    +section()(
+      id="words"
+      data-nav={
+        active: false,
+        url: '#words',
+      }
+    )
+      .section__main
+        +words
+      +footer

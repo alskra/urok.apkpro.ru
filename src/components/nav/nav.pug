@@ -1,0 +1,18 @@
+mixin nav
+  nav.nav(
+    x-data="nav"
+    x-bind="nav"
+    x-cloak
+  )&attributes(attributes)
+    a.nav__logo(href="#")
+      icon-svg(:name="sectionData.style === 'light' ? `logo-mono` : 'logo'")
+
+    .nav__controls(x-bind="hidden")
+      +btn({iconPrev: 'angle-up'}).nav__btn(x-bind="btnPrev")
+      .nav__title(x-bind="title")
+      +btn({iconNext: 'angle-down'}).nav__btn(x-bind="btnNext")
+
+    .nav__fraction(x-bind="hidden")
+      span.nav__current(x-bind="current")
+      | &nbsp;&nbsp;/&nbsp;&nbsp;
+      span.nav__total(x-bind="total")

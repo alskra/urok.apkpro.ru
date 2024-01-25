@@ -1,0 +1,24 @@
+@use "utilities/display" as *;
+@use "utilities/overflow" as *;
+@use "utilities/spacing" as *;
+@use "utilities/typography" as *;
+
+@mixin make-utilities($suffix: "") {
+  @include make-display($suffix);
+  @include make-spacing(m, margin, $suffix);
+  @include make-spacing(p, padding, $suffix);
+}
+
+@include make-utilities;
+
+@each $name, $value in $grid-breakpoints {
+  @media (--min-#{$name}) {
+    @include make-utilities(-min-#{$name});
+  }
+}
+
+@each $name, $value in map-reverse($grid-breakpoints) {
+  @media (--max-#{$name}) {
+    @include make-utilities(-max-#{$name});
+  }
+}

@@ -1,0 +1,42 @@
+variables:
+  #HOST: 'boralus.apkpro.ru'
+  #DEST_DIR: ''
+  EXCLUDE_DIR: '--exclude=README.md'
+  TELEGRAM_URL: 'https://api.telegram.org/bot5647112514:AAEmV4ALyFLaZBSut2ImJmpLFsArARx_B5w/sendMessage'
+  TELEGRAM_CHAT_ID: '-1001526702173'
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+# Rsync Pipeline
+stages:
+  - copy
+  - notify
+
+copy:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      variables:
+        DEST_DIR: "/var/www/urok.apkpro.ru"
+    - if: $CI_COMMIT_BRANCH == "dev"
+      variables:
+        DEST_DIR: "/var/www/dev-urok.apkpro.ru"
+  stage: copy
+  script:
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chown -R deploy:deploy $DEST_DIR"
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chmod -R 770 $DEST_DIR"
+    - sshpass -p $PASSWORD rsync -atzp $EXCLUDE_DIR --delete --recursive -e 'ssh -oStrictHostKeyChecking=no' $CI_PROJECT_DIR/ $USER@$HOST:$DEST_DIR
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chown -R nginx:apache $DEST_DIR"
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chmod -R 770 $DEST_DIR"
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "cd $DEST_DIR && /usr/bin/npm install && /usr/bin/npm run build"
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chown -R nginx:apache $DEST_DIR"
+    - sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USER@$HOST "sudo /usr/bin/chmod -R 770 $DEST_DIR"
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$TELEGRAM_CHAT_ID\", \"text\": \" $CI_COMMIT_BRANCH ✅\"}" $TELEGRAM_URL'
+
+notify_error:
+  stage: notify
+  script:
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"chat_id\": \"$TELEGRAM_CHAT_ID\", \"text\": \" $CI_COMMIT_BRANCH ❌\"}" $TELEGRAM_URL'
+  when: on_failure

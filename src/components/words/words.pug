@@ -1,0 +1,37 @@
+mixin words
+  .words(
+    x-data="words"
+    x-bind="words"
+  )&attributes(attributes)
+    .words__body.hidden-max-lg
+      include /images/words.svg
+
+    .words__body.hidden-min-lg
+      .container
+        h2.words__heading Библиотека #[small цифрового образовательного#[br] контента]
+
+        ul.words__list
+          li.words__item Универсальная
+          li.words__item Индивидуальное обучение
+          li.words__item Тренажеры
+          li.words__item Общедоступная
+          li.words__item Все предметы
+          li.words__item Самодиагностика
+          li.words__item Бесплатная
+          li.words__item Домашние задания
+          li.words__item Безопасный цифровой сервис
+          li.words__item Контент прошедший экспертизу
+          li.words__item Каталог по предметам
+          li.words__item Смешанное обучение
+          li.words__item Инфографика
+          li.words__item Дистанционное обучение
+          li.words__item Удобна для пользователя
+          li.words__item Удаленный доступ
+          li.words__item Лаконичный интерфейс
+          li.words__item Интерактивные лекции
+          li.words__item Уникальный видеоконтент
+          li.words__item Качественный контент
+          li.words__item Самоподготовка
+          li.words__item Обновленный ФГОС
+          li.words__item Персонализированные подборки
+

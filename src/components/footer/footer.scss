@@ -1,0 +1,22 @@
+.footer {
+  position: sticky;
+  bottom: 0;
+  padding: 28rem 0;
+  margin-bottom: calc(-1 * var(--section--padding-bottom));
+  background: $color-white;
+}
+
+.footer__container {
+  display: flex;
+  gap: 50rem 116rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__logo {
+  height: 100rem;
+
+  img {
+    height: 100%;
+  }
+}

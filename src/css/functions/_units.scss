@@ -1,0 +1,21 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+@function vh($number) {
+  @return calc($number * min(var(--vh, 1vh), 1vh));
+}
+
+@function em($number, $base: 16) {
+  @return math.div($number, $base) * 1em;
+}
+
+@function cp($number, $base: 1340) {
+  @return percentage(math.div($number, $base));
+}

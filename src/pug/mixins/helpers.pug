@@ -1,0 +1,8 @@
+mixin pages(pages)
+  if pages.length
+    ol
+      each page in pages
+        li
+          a(href=page.url)= page.title
+          if page.pages
+            +pages(page.pages)

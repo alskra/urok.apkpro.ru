@@ -1,0 +1,60 @@
+include /pug/global
+
+include /components/content/content
+include /components/btn/btn
+
+block variables
+  -
+    let title = 'Библиотека цифрового образовательного контента';
+    let bodyClassList = [];
+    let appClassList = [];
+    let appAttrs = [];
+
+block document
+  doctype html
+  html(
+    lang="ru"
+    prefix="og: https://ogp.me/ns#"
+  )
+    head
+      meta(charset="utf-8")
+      meta(name="viewport" content="width=device-width, initial-scale=1")
+      title= title
+      <meta property="description" content="Это масштабная база знаний, созданная по всем предметам и темам школьной программы в соответствии с Федеральными государственными образовательными стандартами, примерными основными образовательными программами и универсальным тематическим классификатором с использованием самых современных способов визуализации материала.">
+
+      // Favicon
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+      <link rel="manifest" href="/favicon/site.webmanifest">
+      <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#2d849a">
+      <link rel="shortcut icon" href="/favicon/favicon.ico">
+      <meta name="msapplication-TileColor" content="#2d849a">
+      <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+      <meta name="theme-color" content="#f0f4ff">
+      // /Favicon
+
+      // Open Graph
+      <meta property="og:title" content="Библиотека цифрового образовательного контента">
+      <meta property="og:description" content="Это масштабная база знаний, созданная по всем предметам и темам школьной программы в соответствии с Федеральными государственными образовательными стандартами, примерными основными образовательными программами и универсальным тематическим классификатором с использованием самых современных способов визуализации материала.">
+      <meta property="og:image" content="https://urok.apkpro.ru/media/logo-og.png">
+      <meta property="og:image:width" content="640">
+      <meta property="og:image:height" content="320">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://urok.apkpro.ru/">
+      <meta property="og:locale" content="ru_RU">
+      <meta name="twitter:card" content="summary_large_image">
+      // /Open Graph
+
+      <!-- Yandex.Metrika counter -->
+      <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(92795928, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true }); </script>
+      <noscript><div><img src="https://mc.yandex.ru/watch/92795928" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+      <!-- /Yandex.Metrika counter -->
+
+      block head-end
+
+    body(class=bodyClassList)
+      block body-start
+      .app(class=appClassList)&attributes(appAttrs)
+        block app

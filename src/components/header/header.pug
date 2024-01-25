@@ -1,0 +1,21 @@
+include /components/menu/menu
+
+mixin header
+  header.header(
+    x-data="header"
+    x-bind="header"
+    x-cloak
+  )&attributes(attributes)
+    .header__container.container
+      a.header__logo(
+        href="/"
+        x-bind="logo"
+      )
+        icon-svg(name="logo-full")
+
+      .header__menu-box
+        +menu().header__menu
+        +btn({
+          content: 'Меню',
+          iconNext: 'menu',
+        }).header__btn-menu(x-bind="btnMenu")

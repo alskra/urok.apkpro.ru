@@ -1,0 +1,18 @@
+include /components/scene/scene
+
+mixin section({title, start} = {})
+  section.section(
+    class={'section--start': start}
+    x-data="section"
+    x-bind="section"
+    x-cloak
+  )&attributes(attributes)
+    if start
+      .section__back
+        +scene
+    .section__body
+      if title
+        header.section__header.container.grid-12
+          .col-span-8.col-line-3
+            h2.section__title!= title
+      block

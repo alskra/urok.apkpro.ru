@@ -1,0 +1,219 @@
+@custom-selector :--heading :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6);
+@custom-selector :--heading-1 :is(h1, .h1);
+@custom-selector :--heading-2 :is(h2, .h2);
+@custom-selector :--heading-3 :is(h3, .h3);
+@custom-selector :--heading-4 :is(h4, .h4);
+@custom-selector :--heading-5 :is(h5, .h5);
+@custom-selector :--heading-6 :is(h6, .h6);
+@custom-selector :--link :any-link:not([href^="tel:"]);
+@custom-selector :--list :is(ul, ol);
+
+.content {
+  --list-indent: #{em(65)};
+  --list-marker-size: #{em(10)};
+  --blockquote-font-size: #{em(24)};
+
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+
+  :--heading {
+    @include margin-nc-y(var(--heading-interval-top), var(--heading-interval-bottom));
+
+    margin: 0;
+  }
+
+  :--heading + * {
+    // stylelint-disable-next-line
+    margin-top: 0 !important;
+  }
+
+  @for $level from 1 through 6 {
+    h#{$level},
+    .h#{$level} {
+      font-family: var(--heading-#{$level}-font-family, var(--heading-font-family));
+      font-size: var(--heading-#{$level}-font-size, var(--font-size));
+      font-weight: var(--heading-#{$level}-font-weight, var(--heading-font-weight));
+      line-height: var(--heading-#{$level}-line-height, var(--heading-line-height));
+      color: var(--heading-#{$level}-color, var(--heading-color));
+    }
+  }
+
+  // stylelint-disable-next-line
+  p,
+  .p {
+    @include margin-nc-y(var(--paragraph-interval));
+
+    margin: 0;
+  }
+
+  .p {
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+  }
+
+  :--link {
+    padding-bottom: 5rem;
+    color: var(--link-color);
+    text-decoration: var(--link-text-decoration);
+    background:
+      linear-gradient(to right, var(--color-primary), var(--color-primary))
+      no-repeat 0 100% / 100% 2rem;
+    transition: var(--transition-duration) linear;
+    transition-property: color, background-size;
+
+    @include hover {
+      color: var(--link-hover-color, var(--link-color));
+      text-decoration: var(--link-hover-text-decoration, var(--link-text-decoration));
+      background-size: 100% 3rem;
+    }
+  }
+
+  :--link[target="_blank"] {
+    background-size: calc(100% - 18rem) 2rem;
+
+    &::after {
+      display: inline-block;
+      width: 10rem;
+      height: 10rem;
+      margin-left: 8rem;
+      content: "";
+      background: currentcolor;
+      mask-image: url("~@images/icons/svg/blank.svg");
+      mask-position: center;
+      mask-repeat: no-repeat;
+    }
+
+    @include hover {
+      background-size: calc(100% - 18rem) 3rem;
+    }
+  }
+
+  :--list {
+    @include margin-nc-y(var(--paragraph-interval));
+
+    position: relative;
+    padding-left: var(--list-indent);
+    margin: 0;
+    list-style: none;
+  }
+
+  li {
+    // @include margin-nc-y(var(--paragraph-interval));
+  }
+
+  ul {
+    padding-left: 0;
+
+    &.without-dash {
+      > li {
+        &::before {
+          content: normal;
+        }
+      }
+    }
+  }
+
+  ul > li {
+    &::before {
+      content: "\2014\0020";
+    }
+  }
+
+  ol {
+    counter-reset: ol;
+  }
+
+  ol > li {
+    counter-increment: ol;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      width: var(--list-indent);
+      text-align: left;
+      content: counter(ol) ".\00A0";
+    }
+  }
+
+  blockquote {
+    @include margin-nc-y(var(--block-interval));
+
+    position: relative;
+    padding-inline-start: var(--list-indent);
+    margin: 0;
+    font-family: var(--heading-font-family);
+    font-size: var(--blockquote-font-size);
+    font-weight: 500;
+    line-height: 1.2;
+
+    &::before {
+      position: absolute;
+      height: min(55rem, 100% - 8rem);
+      content: "";
+      border-inline-start: 1px solid;
+      inset-block-start: 8rem;
+      inset-inline-start: 0;
+    }
+  }
+
+  table {
+    @include margin-nc-y(var(--block-interval));
+
+    display: block;
+    overflow: auto;
+  }
+
+  tbody {
+    display: table;
+    border-collapse: collapse;
+  }
+
+  tr:first-child :is(th, td) {
+    padding-top: 0;
+  }
+
+  tr:last-child :is(th, td) {
+    padding-bottom: 0;
+  }
+
+  :is(th, td) {
+    padding: calc(0.5 * var(--paragraph-interval)) calc(0.5 * var(--gap-md));
+    vertical-align: baseline;
+  }
+
+  :is(th, td):first-child {
+    padding-left: 0;
+  }
+
+  :is(th, td):last-child {
+    padding-right: 0;
+  }
+
+  td:first-child {
+    color: $color-gray;
+  }
+
+  img:not(picture *, figure *),
+  picture:not(figure *) {
+    @include margin-nc-y(var(--block-interval));
+  }
+
+  figure {
+    @include margin-nc-y(var(--block-interval));
+
+    text-align: center;
+  }
+
+  figcaption {
+    margin-top: calc(0.5 * var(--paragraph-interval));
+    font-size: 13rem;
+    font-style: italic;
+  }
+
+  hr {
+    margin: var(--heading-interval-bottom) 0 var(--heading-interval-top);
+    border: 0;
+    border-top: 1px solid $color-white-lilac;
+  }
+}

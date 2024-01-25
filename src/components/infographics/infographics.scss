@@ -1,0 +1,10 @@
+.infographics__body {
+  svg {
+    display: block;
+  }
+
+  @media (--max-lg) {
+    max-width: 375rem;
+    margin: 0 auto;
+  }
+}

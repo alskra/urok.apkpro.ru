@@ -1,0 +1,53 @@
+mixin possibilities
+  .possibilities(x-data="possibilities")&attributes(attributes)
+    .possibilities__body.swiper(x-ref="swiper")
+      .swiper-wrapper
+        .possibilities__item.swiper-slide
+          +picture-webp().possibilities__image(src="/media/possibilities/teacher.jpg")
+          .possibilities__main
+            .container.grid-12
+              .col-span-6.col-line-7.col-span-8-max-lg.col-line-3-max-lg.col-span-10-max-md.col-line-2-max-md.col-span-12-max-sm.col-line-1-max-sm
+                +content
+                  p.
+                    Использование материалов Библиотеки открывает новые возможности для:
+
+                  ul
+                    li индивидуального обучения и&nbsp;развития дополнительных навыков
+                    li освоения новых форматов работы
+                    li педагогического творчества
+
+                  p.
+                      Сокращает время на&nbsp;подготовку к&nbsp;уроку и&nbsp;проверку работ обучающихся, оптимизирует
+                      трудозатраты на&nbsp;разработку рабочих программ и&nbsp;тематического планирования.
+
+        .possibilities__item.swiper-slide
+          +picture-webp().possibilities__image(src="/media/possibilities/pupil.jpg")
+          .possibilities__main
+            .container.grid-12
+              .col-span-6.col-line-7.col-span-8-max-lg.col-line-3-max-lg.col-span-10-max-md.col-line-2-max-md.col-span-12-max-sm.col-line-1-max-sm
+                +content
+                  p.
+                    Библиотека поможет:
+
+                  ul
+                    li проверить свои знания и&nbsp;выявить образовательные дефициты
+                    li использовать дополнительные учебные материалы по&nbsp;темам школьной программы
+                    li совершенствовать знания и&nbsp;навыки по&nbsp;предметам школьной программы
+
+        .possibilities__item.swiper-slide
+          +picture-webp().possibilities__image(src="/media/possibilities/parent.jpg")
+          .possibilities__main
+            .container.grid-12
+              .col-span-6.col-line-7.col-span-8-max-lg.col-line-3-max-lg.col-span-10-max-md.col-line-2-max-md.col-span-12-max-sm.col-line-1-max-sm
+                +content
+                  p.
+                    Использование материалов Библиотеки поможет:
+
+                  ul
+                    li обеспечить ребенка бесплатным качественным и&nbsp;проверенным цифровым образовательным контентом
+                    li выявить образовательные дефициты и&nbsp;своевременно их&nbsp;устранить
+                    li использовать дополнительные учебные материалы по&nbsp;темам школьной программы
+
+    .possibilities__footer
+      .container
+        .possibilities__pagination(x-ref="pagination")

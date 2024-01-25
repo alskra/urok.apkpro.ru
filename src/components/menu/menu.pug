@@ -1,0 +1,35 @@
+mixin menu
+  -
+    const data = [
+      {
+        url: '#possibilities',
+        title: 'Возможности',
+      },
+      {
+        url: '#about-content',
+        title: 'О контенте',
+      },
+      {
+        url: '#infographics',
+        title: 'Библиотека в цифрах',
+      },
+      {
+        url: '#how-use',
+        title: 'Как пользоваться',
+      },
+      {
+        url: '#faq',
+        title: 'Вопросы и ответы',
+      },
+    ];
+
+  nav.menu(
+    x-data="menu"
+    x-bind="menu"
+  )&attributes(attributes)
+    .menu__body
+      each item in data
+        a.menu__item(
+          href=item.url
+          x-bind="menuItem"
+        )= item.title

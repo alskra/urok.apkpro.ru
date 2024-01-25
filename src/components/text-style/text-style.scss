@@ -1,0 +1,25 @@
+.text-style-1 {
+  font-size: 12rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: div(15, 12);
+  text-transform: uppercase;
+}
+
+.text-style-2 {
+  font-size: 14rem;
+
+  small {
+    font-size: 12rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+}
+
+.text-style-3.text-style-3 {
+  @include margin-nc-y(var(--paragraph-interval));
+
+  font-size: var(--font-size);
+  font-weight: 700;
+  line-height: var(--line-height);
+}

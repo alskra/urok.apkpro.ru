@@ -1,0 +1,10 @@
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *),
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *)::before,
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *)::after,
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *) *,
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *) ::before,
+[data-scoped-css]:not([data-scoped-css-init], [data-scoped-css-init] *) ::after {
+  visibility: hidden !important;
+  transition: none !important;
+  animation: none !important;
+}

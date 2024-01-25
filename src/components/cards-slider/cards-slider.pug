@@ -1,0 +1,71 @@
+mixin cards-slider
+  -
+    const data = [
+      {
+        url: 'https://rutube.ru/video/8aaa9f9c207236b512c29176197872bb/?r=wd',
+        image: '/media/video/02-12.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/fb6c5cbf8b7b1cc03d1f8263593f4664/?r=wd',
+        image: '/media/video/18-11.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/e7e5c326dd233ed7bb2c71ae3ee51c6d/?r=wd',
+        image: '/media/video/14-10.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/e6b03a32f400ec56247e0d69325f2a8c/?r=wd',
+        image: '/media/video/28-10.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/d1696590e2c51641bda023a7bdf5acba/?r=wd',
+        image: '/media/video/07-10.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/e10e8541bdcb2473a2085e94bc4cf7b1/?r=wd',
+        image: '/media/video/21-10.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/d24109e7cecdab735d6ad41b0553bc6c/?r=wd',
+        image: '/media/video/08-04.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/dd2e3fb5f1a54edbb0741c89cd69753e/?r=wd',
+        image: '/media/video/29-04.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/a73e1c29d94401bd1bda7c2aed505601/?r=wd',
+        image: '/media/video/22-04.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/9670abab22105a27febdfde89c26e45b/?r=wd',
+        image: '/media/video/01-04.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/a97c4d128c9e0268d5e606435530d345/?r=wd',
+        image: '/media/video/18-03.jpg',
+      },
+      {
+        url: 'https://rutube.ru/video/b600616413869bcd0fccf82d81c95168/?r=wd',
+        image: '/media/video/25-03.jpg',
+      },
+    ];
+
+  .cards-slider(x-data="cardsSlider")&attributes(attributes)
+    +btn({
+      iconPrev: 'angle-left',
+    }).cards-slider__btn(x-ref="prevEl")
+
+    .cards-slider__body.swiper(x-ref="swiper")
+      .swiper-wrapper.flex-grid-3.flex-grid-12-max-md
+        each item in data
+          a.cards-slider__item.swiper-slide.col-1.col-5-max-md(
+            href=item.url
+            target="_blank"
+          )
+            .cards-slider__main
+              +picture-webp().cards-slider__image(src=item.image)
+
+    +btn({
+      iconPrev: 'angle-right',
+    }).cards-slider__btn(x-ref="nextEl")

@@ -1,0 +1,67 @@
+// Named colors
+$color-black: #000;
+$color-white: #fff;
+$color-tuatara: #3c3c3b;
+$color-neon-carrot: #ff9432;
+$color-zircon: #f0f4ff;
+$color-zircon-2: #eff3ff;
+$color-white-lilac: #f1f4fa;
+$color-onahau: #d3ebff;
+$color-nebula: #dee3e1;
+$color-nile-blue: #183b59;
+$color-gray: #ccc;
+$color-royal-blue: #595fe4;
+$color-green: #008000;
+$color-red: #f00;
+
+// Colors
+$color-text: $color-tuatara;
+$color-bg: $color-white;
+$color-heading: $color-text;
+$color-primary: $color-neon-carrot;
+$color-primary-hover: $color-neon-carrot;
+$color-disabled: $color-gray;
+$color-success: $color-green;
+$color-danger: $color-red;
+$colors: (
+  color-text: $color-text,
+  color-bg: $color-bg,
+  color-heading: $color-heading,
+  color-primary: $color-primary,
+  color-primary-hover: $color-primary-hover,
+  color-disabled: $color-disabled,
+  color-success: $color-success,
+  color-danger: $color-danger,
+);
+
+// Gradients
+$gradients: (
+);
+
+// Layout
+$xs: 375px;
+$sm: 576px;
+$md: 768px;
+$lg: 1025px;
+$xl: 1400px; // default
+$xxl: 1920px;
+$xxxl: 2560px;
+$grid-breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  // 2xl: $xxl,
+  // 3xl: $xxxl
+);
+$grid-count: 12;
+
+// Utilities
+$spacer: 4rem;
+$spacers: 0, px, auto, p,
+  0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4,
+  5, 6, 7, 8, 9, 10, 11, 12,
+  14, 15, 16, 17, 19,
+  20, 24, 28, 32, 34, 36, 40, 44, 48, 52, 56, 60, 64,
+  72, 80,
+  96;

@@ -1,0 +1,137 @@
+.possibilities {
+  position: relative;
+  margin:
+    calc(-1 * var(--section--padding-top))
+    0
+    calc(-1 * var(--section--padding-bottom));
+}
+
+.possibilities__body {
+  overflow: visible;
+}
+
+.possibilities__item {
+  display: flex;
+  height: auto;
+
+  @media (--min-lg) {
+    .is-device-desktop & {
+      min-height: vh(100);
+    }
+  }
+}
+
+.possibilities__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + var(--padding-correct));
+  max-width: none;
+  height: 100%;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: rgba($color-black, 0.4);
+  }
+
+  img {
+    width: 100vw;
+    max-width: none;
+    object-position: 20% 0;
+  }
+}
+
+.possibilities__main {
+  --color: #{$color-white};
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+  padding: calc(var(--section--padding-top) + 12rem * 1.25 + 36rem) 0 94rem + 36rem;
+
+  &::before {
+    flex: 1.5;
+    content: "";
+  }
+
+  &::after {
+    flex: 1;
+    content: "";
+  }
+}
+
+.possibilities__footer {
+  position: absolute;
+  bottom: var(--section--padding-bottom);
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.possibilities__pagination {
+  display: flex;
+  column-gap: 70rem;
+  justify-content: flex-end;
+  user-select: none;
+
+  @media (--max-md) {
+    column-gap: var(--grid-gutter);
+  }
+}
+
+@keyframes possibilities-pagination-item {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.possibilities__pagination-item {
+  position: relative;
+  width: 274rem;
+  cursor: pointer;
+
+  div:nth-child(1) {
+    overflow: hidden;
+    font-size: 12rem;
+    font-weight: 600;
+    line-height: div(22, 12);
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  div:nth-child(2) {
+    position: relative;
+    height: 1rem;
+    margin-top: 11rem;
+    content: "";
+    background: rgba($color-white, 0.5);
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2rem;
+      content: "";
+      background: $color-white;
+    }
+  }
+
+  &.is-active {
+    div:nth-child(2) {
+      &::after {
+        animation: possibilities-pagination-item 6s linear both;
+      }
+    }
+  }
+}

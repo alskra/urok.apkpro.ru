@@ -1,0 +1,50 @@
+@use "../variables" as *;
+@use "../functions" as *;
+
+@mixin make-spacing($prefix, $property, $suffix) {
+  @each $size in $spacers {
+    $size-escape: split-str(#{$size}, ".", "_");
+    $value: 0;
+
+    @if $size == px {
+      $value: 1px;
+    } @else if $size == auto {
+      $value: auto;
+    } @else if $size == p {
+      $value: var(--paragraph-interval);
+    } @else {
+      $value: $size * $spacer;
+    }
+
+    // stylelint-disable-next-line
+    .#{$prefix}-#{$size-escape}#{$suffix} {
+      #{$property}: $value !important;
+    }
+
+    .#{$prefix}x-#{$size-escape}#{$suffix} {
+      #{$property}-right: $value !important;
+      #{$property}-left: $value !important;
+    }
+
+    .#{$prefix}y-#{$size-escape}#{$suffix} {
+      #{$property}-top: $value !important;
+      #{$property}-bottom: $value !important;
+    }
+
+    .#{$prefix}t-#{$size-escape}#{$suffix} {
+      #{$property}-top: $value !important;
+    }
+
+    .#{$prefix}r-#{$size-escape}#{$suffix} {
+      #{$property}-right: $value !important;
+    }
+
+    .#{$prefix}b-#{$size-escape}#{$suffix} {
+      #{$property}-bottom: $value !important;
+    }
+
+    .#{$prefix}l-#{$size-escape}#{$suffix} {
+      #{$property}-left: $value !important;
+    }
+  }
+}

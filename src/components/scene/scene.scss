@@ -1,0 +1,183 @@
+$base-x: 100.63px + 17;
+$base-y: 593.92px + 17;
+$x1: -40.38px + 17 - $base-x;
+$y1: 678.8px + 17 - $base-y;
+$x2: 352px - $base-x;
+$y2: 473px - $base-y;
+$x3: 543px - $base-x;
+$y3: 581px - $base-y;
+$x4: 755px - $base-x;
+$y4: 460px - $base-y;
+$x5: 971px - $base-x;
+$y5: 579px - $base-y;
+$x6: 1406px + 17 - $base-x;
+$y6: 293px + 17 - $base-y;
+$duration-run: 2s;
+$duration-stop: 0.1s;
+$duration: 5 * $duration-run + 4 * $duration-stop;
+$timing-function: ease-in-out;
+$delay: 0.3s;
+$keyframe-1: 0%;
+$keyframe-2: $keyframe-1 + percentage(div($duration-run, $duration));
+$keyframe-3: $keyframe-2 + percentage(div($duration-stop, $duration));
+$keyframe-4: $keyframe-3 + percentage(div($duration-run, $duration));
+$keyframe-5: $keyframe-4 + percentage(div($duration-stop, $duration));
+$keyframe-6: $keyframe-5 + percentage(div($duration-run, $duration));
+$keyframe-7: $keyframe-6 + percentage(div($duration-stop, $duration));
+$keyframe-8: $keyframe-7 + percentage(div($duration-run, $duration));
+$keyframe-9: $keyframe-8 + percentage(div($duration-stop, $duration));
+$keyframe-10: $keyframe-9 + percentage(div($duration-run, $duration));
+
+@keyframes point {
+  #{$keyframe-1} {
+    transform: translate($x1, $y1);
+  }
+
+  #{$keyframe-2} {
+    transform: translate($x2, $y2);
+  }
+
+  #{$keyframe-3} {
+    transform: translate($x2, $y2);
+  }
+
+  #{$keyframe-4} {
+    transform: translate($x3, $y3);
+  }
+
+  #{$keyframe-5} {
+    transform: translate($x3, $y3);
+  }
+
+  #{$keyframe-6} {
+    transform: translate($x4, $y4);
+  }
+
+  #{$keyframe-7} {
+    transform: translate($x4, $y4);
+  }
+
+  #{$keyframe-8} {
+    transform: translate($x5, $y5);
+  }
+
+  #{$keyframe-9} {
+    transform: translate($x5, $y5);
+  }
+
+  #{$keyframe-10} {
+    transform: translate($x6, $y6);
+  }
+}
+
+@keyframes books-1 {
+  #{$keyframe-1} {
+    opacity: 1;
+  }
+
+  #{$keyframe-2} {
+    opacity: 0;
+  }
+
+  #{$keyframe-3} {
+    opacity: 0;
+  }
+
+  #{$keyframe-4} {
+    opacity: 1;
+  }
+}
+
+@keyframes books-3 {
+  #{$keyframe-3} {
+    opacity: 1;
+  }
+
+  #{$keyframe-4} {
+    opacity: 0;
+  }
+
+  #{$keyframe-5} {
+    opacity: 0;
+  }
+
+  #{$keyframe-6} {
+    opacity: 1;
+  }
+}
+
+@keyframes books-4 {
+  #{$keyframe-5} {
+    opacity: 1;
+  }
+
+  #{$keyframe-6} {
+    opacity: 0;
+  }
+
+  #{$keyframe-7} {
+    opacity: 0;
+  }
+
+  #{$keyframe-8} {
+    opacity: 1;
+  }
+}
+
+@keyframes books-5 {
+  #{$keyframe-7} {
+    opacity: 1;
+  }
+
+  #{$keyframe-8} {
+    opacity: 0;
+  }
+
+  #{$keyframe-9} {
+    opacity: 0;
+  }
+
+  #{$keyframe-10} {
+    opacity: 1;
+  }
+}
+
+#point {
+  transform-origin: $base-x $base-y;
+  animation: point $duration $timing-function $delay infinite backwards;
+}
+
+#books-1,
+#books-2,
+#books-3,
+#books-4,
+#books-5,
+#books-6 {
+  animation: $duration $timing-function $delay infinite;
+}
+
+#books-1 {
+  animation-name: books-1;
+}
+
+#books-2 {
+  animation-name: books-1;
+  animation-delay: $delay + 1s;
+}
+
+#books-3 {
+  animation-name: books-3;
+}
+
+#books-4 {
+  animation-name: books-4;
+}
+
+#books-5 {
+  animation-name: books-5;
+}
+
+#books-6 {
+  animation-name: books-5;
+  animation-delay: $delay + $duration-run + $duration-stop;
+}

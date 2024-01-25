@@ -1,0 +1,12 @@
+mixin collapsible(title, isExpanded)
+  article.collapsible(
+    x-data=isExpanded ? `collapsible(${isExpanded})` : 'collapsible'
+    x-cloak
+  )
+    header.collapsible__header(x-bind="header")
+      h3.collapsible__title!= title
+      .collapsible__icon
+
+    .collapsible__main(x-bind="main")
+      .collapsible__main-inner
+        block

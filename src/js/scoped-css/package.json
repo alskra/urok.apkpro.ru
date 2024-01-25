@@ -1,0 +1,14 @@
+{
+  "name": "scoped-css",
+  "version": "1.0.0",
+  "description": "CSS scope based on block-class names",
+  "type": "module",
+  "main": "scoped-css.js",
+  "module": "scoped-css.js",
+  "exports": {
+    ".": "./scoped-css.js",
+    "./css": "./scoped-css.css"
+  },
+  "author": "Alexander Krasnoyurchenko <krasnoyurchenko.a.s@gmail.com>",
+  "license": "ISC"
+}

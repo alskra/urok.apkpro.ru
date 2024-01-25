@@ -1,0 +1,95 @@
+@mixin hover {
+  @media (--hover) {
+    #{if(&, "&", "")}:hover {
+      @content;
+    }
+  }
+}
+
+@mixin hover-not-disabled {
+  @include hover {
+    &:not(:--disabled) {
+      @content;
+    }
+  }
+}
+
+@mixin text-stroke($stroke-width, $stroke-color, $fill-color: transparent) {
+  -webkit-text-stroke: $stroke-width $stroke-color;
+
+  @if $fill-color == transparent {
+    -webkit-text-fill-color: $fill-color;
+    color: $stroke-color;
+  } @else {
+    color: $fill-color;
+  }
+}
+
+@mixin font-face($url, $font-family, $font-weight, $font-style, $woff: false) {
+  @font-face {
+    @if $woff {
+      src:
+        url($url + ".woff2") format("woff2"),
+        url($url + ".woff") format("woff");
+    } @else {
+      src: url($url + ".woff2") format("woff2");
+    }
+
+    // stylelint-disable
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+    // stylelint-enable
+  }
+}
+
+@mixin retina {
+  // stylelint-disable-next-line
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    @content;
+  }
+}
+
+@mixin line-clamp {
+  // stylelint-disable
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--line-clamp);
+  overflow: hidden;
+  line-height: var(--line-height);
+  max-height: calc(var(--line-clamp) * var(--line-height) * 1em);
+  // stylelint-enable
+}
+
+@mixin margin-nc-y($top, $bottom: $top) {
+  #{if(&, "&", "")}:is(:not(:first-child), .mt) {
+    margin-top: $top;
+  }
+
+  #{if(&, "&", "")}:is(:not(:last-child), .mb) {
+    margin-bottom: $bottom;
+  }
+}
+
+@mixin margin-nc-top($top) {
+  #{if(&, "&", "")}:is(:not(:first-child), .mt) {
+    margin-top: $top;
+  }
+}
+
+@mixin margin-nc-bottom($bottom) {
+  #{if(&, "&", "")}:is(:not(:last-child), .mb) {
+    margin-bottom: $bottom;
+  }
+}
+
+@mixin margin-nc-block($start, $end: $start) {
+  #{if(&, "&", "")}:not(:first-child) {
+    margin-block-start: $start;
+  }
+
+  #{if(&, "&", "")}:not(:last-child) {
+    margin-block-end: $end;
+  }
+}

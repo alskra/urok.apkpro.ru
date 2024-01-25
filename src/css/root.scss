@@ -1,0 +1,94 @@
+// stylelint-disable no-duplicate-selectors
+// Responsive Sizes
+:root {
+  font-size: calc(0.35 / strip-unit($xl) * 100vw + 0.65px);
+
+  @media (--max-xl) {
+    font-size: calc(0.4 / strip-unit($xl) * 100vw + 0.6px);
+  }
+
+  @media (--max-lg) {
+    font-size: calc(0.2 / strip-unit($lg - 1) * 100vw + 0.8px);
+  }
+}
+
+// Colors and Gradients
+:root {
+  @each $name, $value in $colors {
+    --#{$name}: #{$value};
+  }
+
+  @each $name, $value in $gradients {
+    --#{$name}: #{$value};
+  }
+}
+
+// Typography
+:root {
+  --font-family: var(--font-family-inter);
+  --font-weight: 400;
+  --font-size: 16rem;
+  --line-height: 2;
+  --color: var(--color-text);
+  --bg: var(--color-bg);
+  --heading-font-family: var(--font-family-inter);
+  --heading-1-font-size: 40rem;
+  --heading-2-font-size: 36rem;
+  --heading-3-font-size: 32rem;
+  --heading-4-font-size: 28rem;
+  --heading-5-font-size: 24rem;
+  --heading-6-font-size: 20rem;
+  --heading-font-weight: 700;
+  --heading-1-font-weight: 900;
+  --heading-2-font-weight: 900;
+  --heading-line-height: 1.2;
+  --heading-color: var(--color-heading);
+  --heading-interval-top: 60rem;
+  --heading-interval-bottom: 48rem;
+  --paragraph-interval: calc(var(--line-height) * 1em);
+  --link-color: var(--color);
+  --link-text-decoration: none;
+
+  // --link-hover-color: var(--color);
+  // --link-hover-text-decoration: none;
+  --block-interval: 48rem;
+
+  // @media (--max-lg) {
+  //   --heading-1-font-size: 40rem;
+  //   --heading-2-font-size: 35rem;
+  //   --heading-3-font-size: 30rem;
+  //   --heading-4-font-size: 25rem;
+  //   --heading-5-font-size: 20rem;
+  //   --heading-6-font-size: 15rem;
+  // }
+}
+
+// Layout
+:root {
+  --container-padding: 30rem;
+  --container-max-width: 100%;
+  --grid-count: #{$grid-count};
+  --grid-gutter: 24rem;
+  --col-size: calc((100% - (var(--grid-count) - 1) * var(--grid-gutter)) / var(--grid-count));
+
+  @media (--max-lg) {
+    --container-padding: 16rem;
+  }
+}
+
+// Other
+:root {
+  // stylelint-disable-next-line
+  --padding-correct: 0px;
+  --scroll-behavior: auto;
+  --overscroll-behavior: none;
+  --transition-duration: 0.15s;
+  --transition-timing-function: ease-in-out;
+  --transition: var(--transition-duration) var(--transition-timing-function);
+  --selection-color: #{$color-white};
+  --selection-bg: #{rgba($color-primary-hover, 0.8)};
+
+  &.has-padding-correct {
+    --padding-correct: var(--scrollbar-width);
+  }
+}

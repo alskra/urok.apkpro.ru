@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "../variables" as *;
+
+@mixin media-up($breakpoint) {
+  @if type-of($breakpoint) == "string" {
+    $breakpoint: map.get($grid-breakpoints, $breakpoint);
+  }
+
+  @media (width >= $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-down($breakpoint) {
+  @if type-of($breakpoint) == "string" {
+    $breakpoint: map.get($grid-breakpoints, $breakpoint);
+  }
+
+  @media (width < $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-between($breakpoint-start, $breakpoint-end) {
+  @if type-of($breakpoint-start) == "string" {
+    $breakpoint-start: map.get($grid-breakpoints, $breakpoint-start);
+  }
+
+  @if type-of($breakpoint-end) == "string" {
+    $breakpoint-end: map.get($grid-breakpoints, $breakpoint-end);
+  }
+
+  @media (width >= $breakpoint-start) and (width < $breakpoint-end) {
+    @content;
+  }
+}
